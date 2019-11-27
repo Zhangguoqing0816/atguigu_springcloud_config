@@ -34,7 +34,7 @@ eureka:
     instance-id: microservicecloud-dept89001-hystrix # 自定义服务名称信息 - eureka服务列表右边名称
     prefer-ip-address: true                 # 访问路径可以显示ip  - 点击eureka服务列表名称，右下角或者点击进入会换成IP
 
- 点击eureka服务列表名称进入info信息界面，在父项目中配置maven-resources-plugin
+# 点击eureka服务列表名称进入info信息界面，在父项目中配置maven-resources-plugin
 info:
   app.name: atguigu-microservicecloud
   company.name: www.atguigu.com
