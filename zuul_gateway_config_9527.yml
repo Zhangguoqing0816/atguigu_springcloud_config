@@ -1,10 +1,14 @@
 spring:
   profiles:
     active:
-      - test
+    - dev
 ---
+server:
+  port: 9527
 spring:
   profiles: dev
+  application:
+    name: feignclient-dept-config
 eureka:
   client:                   # 客户端注册进Eureka服务列表内
     service-url:
@@ -12,9 +16,30 @@ eureka:
   instance:
     instance-id: gateway-9527-7001.com # 自定义服务名称信息 - eureka服务列表右边名称
     prefer-ip-address: true                 # 访问路径可以显示ip  - 点击eureka服务列表名称，右下角或者点击进入会换成IP
+# 点击eureka服务列表名称进入info信息界面，在父项目中配置maven-resources-plugin
+info:
+  app.name: atguigu-microservicecloud
+  company.name: www.atguigu.com
+  build.artifactId: ${project.artifactId}$
+  build.version: ${project.version}
+
+zuul:
+  #ignored-services: microservicecloud-dept  # 忽略一个
+  ignored-services: "*" # 所有的微服务名称都忽略掉
+  routes:
+    #mydept.serviceId: microservicecloud-dept
+    #mydept.path: /mydept/**
+    myfeign.serviceId: feignclient-dept # 将feign客户端也注册进eureka服务里面使用zuul访问，实现feign里面的自定义负载均衡
+    myfeign.path: /myfeign/**
+  prefix: /atguigu # 设置统一的前缀
+
 ---
+server:
+  port: 9527
 spring:
   profiles: test
+  application:
+    name: feignclient-dept-config
 eureka:
   client:                   # 客户端注册进Eureka服务列表内
     service-url:
@@ -22,3 +47,19 @@ eureka:
   instance:
     instance-id: gateway-9527-6001.com # 自定义服务名称信息 - eureka服务列表右边名称
     prefer-ip-address: true                 # 访问路径可以显示ip  - 点击eureka服务列表名称，右下角或者点击进入会换成IP
+# 点击eureka服务列表名称进入info信息界面，在父项目中配置maven-resources-plugin
+info:
+  app.name: atguigu-microservicecloud
+  company.name: www.atguigu.com
+  build.artifactId: ${project.artifactId}$
+  build.version: ${project.version}
+
+zuul:
+  #ignored-services: microservicecloud-dept  # 忽略一个
+  ignored-services: "*" # 所有的微服务名称都忽略掉
+  routes:
+    #mydept.serviceId: microservicecloud-dept
+    #mydept.path: /mydept/**
+    myfeign.serviceId: feignclient-dept # 将feign客户端也注册进eureka服务里面使用zuul访问，实现feign里面的自定义负载均衡
+    myfeign.path: /myfeign/**
+  prefix: /atguigu # 设置统一的前缀

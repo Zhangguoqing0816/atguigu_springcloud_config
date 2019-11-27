@@ -2,10 +2,14 @@
 spring:
   profiles:
     active:
-      - test
+    - dev
 ---
+server:
+  port: 80
 spring:
   profiles: dev
+  application:
+    name: feignclient-dept-config
 eureka:
   instance:
     instance-id: feignClient-dev
@@ -18,8 +22,12 @@ feign:
   hystrix:
     enabled: true
 ---
+server:
+  port: 80
 spring:
   profiles: test
+  application:
+    name: feignclient-dept-config
 eureka:
   instance:
     instance-id: feignClient-test
