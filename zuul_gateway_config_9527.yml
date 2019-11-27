@@ -8,7 +8,7 @@ server:
 spring:
   profiles: dev
   application:
-    name: feignclient-dept-config
+    name: microservicecloud-zuul-gateway-config
 eureka:
   client:                   # 客户端注册进Eureka服务列表内
     service-url:
@@ -39,7 +39,7 @@ server:
 spring:
   profiles: test
   application:
-    name: feignclient-dept-config
+    name: microservicecloud-zuul-gateway-config
 eureka:
   client:                   # 客户端注册进Eureka服务列表内
     service-url:
